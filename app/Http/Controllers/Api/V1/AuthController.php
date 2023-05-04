@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Auth;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\LoginUserRequest;
@@ -45,6 +45,15 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $user->createToken('Api Token of ' . $user->name)->plainTextToken
         ]);
+    }
+
+    public function getUser()
+    {
+        return response()->json([
+            'data' => [
+                'user' => Auth::user()
+            ]
+        ], 200);
     }
 
     public function logout()
