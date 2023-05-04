@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses;
 
-trait JsonResponse
+trait HttpResponse
 {
     /**
      * Json response success
