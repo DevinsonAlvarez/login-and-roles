@@ -5,6 +5,18 @@ namespace App\Http\Responses;
 trait HttpResponse
 {
     /**
+     * Standar Json Response
+     * 
+     * @param array $data Data to return
+     * @param int $code Http code
+     * @param array $header Data associates at the response
+     */
+    public function jsonResponse($data, $code = 200, $headers =[])
+    {
+        return response()->json($data, $code, $headers);
+    }
+
+    /**
      * Json response success
      * 
      * @param mixed $data Data to return
@@ -13,10 +25,9 @@ trait HttpResponse
      * 
      * @return json
      */
-    public function success($data, $message = null, $code = 200)
+    public function success($data, $message = 'Request seccessful.', $code = 200)
     {
         return response()->json([
-            'status' => 'Request seccessful.',
             'message' => $message,
             'data' => $data
         ], $code);
@@ -31,12 +42,11 @@ trait HttpResponse
      * 
      * @return json
      */
-    public function error($data, $message = null, $code)
+    public function error($errors, $message = 'An Error has ocurred...', $code)
     {
         return response()->json([
-            'status' => 'An Error has ocurred...',
             'message' => $message,
-            'data' => $data
+            'errors' => $errors
         ], $code);
     }
 }
